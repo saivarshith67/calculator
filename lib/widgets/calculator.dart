@@ -11,7 +11,7 @@ class Calculator extends StatefulWidget {
 
 class _CalculatorState extends State<Calculator> {
 
-  String eqn = '               ';
+  String eqn = '';
   ScrollController scrollController = ScrollController();
 
   /* Function to update display area */
@@ -20,34 +20,34 @@ class _CalculatorState extends State<Calculator> {
     if(text == '='){
       setState(() {
         eqn += text;
-        scrollController.jumpTo(scrollController.position.maxScrollExtent + 30);
+        scrollController.jumpTo(scrollController.position.maxScrollExtent + 50);
       });
     }
     else if(text == '⌫'){
-      if(eqn != '               ') {
+      if(eqn != '') {
         setState(() {
           eqn = eqn.substring(0, eqn.length - 1);
-          scrollController.jumpTo(scrollController.position.maxScrollExtent + 30);
+          scrollController.jumpTo(scrollController.position.maxScrollExtent + 50);
         });
       }
     }
     else if(text == 'AC'){
       setState(() {
-        eqn = '               ';
+        eqn = '';
       });
     }
     else if(text == '^'  || text == '%' || text == '/' || text == '*' || text == '-' || text == '+' ){
       if(eqn != '' ){
         setState(() {
           eqn += text;
-          scrollController.jumpTo(scrollController.position.maxScrollExtent+30);
+          scrollController.jumpTo(scrollController.position.maxScrollExtent+50);
         });
       }
     }
     else{
       setState(() {
         eqn += text;
-        scrollController.jumpTo(scrollController.position.maxScrollExtent+30);
+        scrollController.jumpTo(scrollController.position.maxScrollExtent+50);
       });
     }
   }
@@ -67,27 +67,30 @@ class _CalculatorState extends State<Calculator> {
           Flexible(
             flex: 2,
             child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 2.5,
               color: Colors.grey[900],
-              child: SingleChildScrollView(
-                controller: scrollController,
-                scrollDirection: Axis.horizontal,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10.0, 75, 25, 10),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      controller: scrollController,
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Text(
                           eqn,
+                          textAlign: TextAlign.right,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 100,
                           ),
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ),
