@@ -15,7 +15,7 @@ class CalcButton extends StatelessWidget {
     },
     child: Container(
         decoration: const BoxDecoration(
-          color: Colors.brown,
+          color: Color(0xFF5d403c),
           borderRadius: BorderRadius.all(Radius.circular(60)),
         ),
         child: Center(
@@ -23,7 +23,7 @@ class CalcButton extends StatelessWidget {
             btnText,
             style: const TextStyle(
               fontSize: 45,
-              color: Colors.white,
+              color: Color(0xFFf0deda),
             ),
           ),
         ),

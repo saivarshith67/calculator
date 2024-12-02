@@ -76,7 +76,7 @@ class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color(0xFF1b1110),
         body:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           /* Result Area */
@@ -86,7 +86,7 @@ class _CalculatorState extends State<Calculator> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2.5,
-              color: Colors.grey[900],
+              color: const Color(0xFF392723),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -103,7 +103,7 @@ class _CalculatorState extends State<Calculator> {
                               readOnly: true,
                               textAlign: TextAlign.right,
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Color(0xFFf0deda),
                                 fontSize: 100,
                               ),
                               decoration: const InputDecoration(
