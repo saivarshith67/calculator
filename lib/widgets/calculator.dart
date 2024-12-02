@@ -13,6 +13,7 @@ class Calculator extends StatefulWidget {
 class _CalculatorState extends State<Calculator> {
   String eqn = '';
   ScrollController scrollController = ScrollController();
+  TextEditingController _controller =TextEditingController();
 
   /* Function to update display area */
 
@@ -33,18 +34,20 @@ class _CalculatorState extends State<Calculator> {
     if (text == '=') {
       setState(() {
         eqn = evaluate();
+        _controller.text=eqn;
       });
     } else if (text == '⌫') {
       if (eqn != '') {
         setState(() {
           eqn = eqn.substring(0, eqn.length - 1);
-          scrollController
-              .jumpTo(scrollController.position.maxScrollExtent + 50);
+          scrollController.jumpTo(scrollController.position.maxScrollExtent + 50);
+          _controller.text=eqn;
         });
       }
     } else if (text == 'AC') {
       setState(() {
         eqn = '';
+        _controller.text=eqn;
       });
     } else if (text == '^' ||
         text == '%' ||
@@ -55,14 +58,15 @@ class _CalculatorState extends State<Calculator> {
       if (eqn != '') {
         setState(() {
           eqn += text;
-          scrollController
-              .jumpTo(scrollController.position.maxScrollExtent + 50);
+          scrollController.jumpTo(scrollController.position.maxScrollExtent + 50);
+          _controller.text=eqn;
         });
       }
     } else {
       setState(() {
         eqn += text;
         scrollController.jumpTo(scrollController.position.maxScrollExtent + 50);
+        _controller.text=eqn;
       });
     }
   }
@@ -90,14 +94,21 @@ class _CalculatorState extends State<Calculator> {
                       scrollDirection: Axis.horizontal,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Text(
-                          eqn,
-                          textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 100,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: TextField(
+                            controller: _controller,
+                            readOnly: true,
+                            textAlign: TextAlign.right,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 100,
+                            ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                            ),
                           ),
-                        ),
+                        )
                       ),
                     ),
                   ),
